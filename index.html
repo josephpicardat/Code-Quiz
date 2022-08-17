@@ -4,20 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Todo List</title>
+    <title>Coding Quiz</title>
   </head>
+
   <body>
-    <div class="card">
-      <h1>Todo Tracker</h1>
+
+    <header class="header">
+      <button class="headerItems hh" id="highscore">Highscore</button>
+      <button class="headerItems hh" id="home">Home</button>
+      <h2 class="headerItems">Time Left: <span id="time">5</span></h2>
+    </header>
+
+    <br>
+    <br>
+
+    <!-- <div class="timer">
+    <button onclick="clearInterval(myTimer);">Stop counter</button>
+   </div> -->
+
+   <section class="section home">
+      <h1 class="title">Coding Quiz</h1>
+      <h6>This is the description of the quiz</h6>
+      <button onclick="clock(); document.getElementById('time').innerHTML='5';">Start Quiz</button>
+    </section>
+
+    <section class="section scores">
+      <h1 class="title">Scores</h1>
       <form id="todo-form" method="POST">
         <label for="todo-text">Add a Todo: </label>
         <input type="text" placeholder="I need to..." name="todo-text" id="todo-text" />
       </form>
       <p>Todo Count: <span id="todo-count">0</span></p>
       <ul id="todo-list"></ul>
-  
-  </div>
+    
+    </section>
+        
+    <!-- Script Source -->
     <script src="./assets/js/script.js"></script>
+
   </body>
+
 </html>
