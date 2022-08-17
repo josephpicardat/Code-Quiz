@@ -1,11 +1,16 @@
-// Timer Global Varaibles
+// Location Global Variables
+var home = document.getElementById("home");
+var scores = document.getElementById("scores");
+var homeButton = document.getElementById("homeButton");
+
+// Timer Global Variables
 var websiteCountdown = document.getElementById("time");
 
-// scoreboard Global Variables
-var todoInput = document.querySelector("#todo-text");
-var todoForm = document.querySelector("#todo-form");
-var todoList = document.querySelector("#todo-list");
-var todoCountSpan = document.querySelector("#todo-count");
+// Scoreboard Global Variables
+var initialInput = document.querySelector("#initial-text");
+var scoreForm = document.querySelector("#score-form");
+var scoreList = document.querySelector("#score-list");
+var topScoreSpan = document.querySelector("#top-score");
 var todos = [];
 
 // Countdown Timer
@@ -23,11 +28,16 @@ var myTimer;
      }
    }
 
-
+function gotoHome() {
+  home.style.display = "block";
+  scores.style.display = "none";
+  // questions.style.display = "none";
+  homeButton.style.visibility = "visibile";
+}
 
 function renderTodos() {
-  todoList.innerHTML = "";
-  todoCountSpan.textContent = todos.length;
+  scoreList.innerHTML = "";
+  topScoreSpan.textContent = todos.length;
   
   for (var i = 0; i < todos.length; i++) {
     var todo = todos[i];
@@ -36,7 +46,7 @@ function renderTodos() {
     li.textContent = todo;
     li.setAttribute("data-index", i);
 
-    todoList.appendChild(li);
+    scoreList.appendChild(li);
   }
 }
 
@@ -51,20 +61,20 @@ function init() {
 function storeTodos() {
   localStorage.setItem("todos", JSON.stringify(todos));
 }
-todoForm.addEventListener("submit", function(event) {
+scoreForm.addEventListener("submit", function(event) {
   event.preventDefault();
-  var todoText = todoInput.value.trim();
+  var todoText = initialInput.value.trim();
   if (todoText === "") {
     return;
   }
   todos.push(todoText);
-  todoInput.value = "";
+  initialInput.value = "";
  
   storeTodos();
   renderTodos();
 });
 
-todoList.addEventListener("click", function(event) {
+scoreList.addEventListener("click", function(event) {
   var element = event.target;
   if (element.matches("button") === true) {
     var index = element.parentElement.getAttribute("data-index");
