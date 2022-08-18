@@ -3,10 +3,19 @@ var home = document.getElementById("home");
 var scores = document.getElementById("scores");
 var homeButton = document.getElementById("homeButton");
 var highscoreButton =  document.getElementById("highscore");
+var questionsBlock = document.getElementById("questions");
 
 // Timer Global Variables
 var websiteCountdown = document.getElementById("time");
 var counterValue = 60
+
+// Question Global Variables
+var startBtn = document.getElementById("startButton");
+var questionInput = document.getElementById("quizQuestion");
+var answer1 = document.getElementById("answer1");
+var answer2 = document.getElementById("answer2");
+var answer3 = document.getElementById("answer3");
+var answer4 = document.getElementById("answer4");
 
 // Scoreboard Global Variables
 var initialInput = document.querySelector("#initial-text");
@@ -15,7 +24,10 @@ var scoreList = document.querySelector("#score-list");
 var topScoreSpan = document.querySelector("#top-score");
 var todos = [];
 
-// 
+// Important Global Variables
+var totalScore = 0;
+var questionNumber = 0;
+var i = 0;
 
 // Countdown Timer
 var myTimer;
@@ -44,29 +56,29 @@ var myTimer;
   //   }
 
 // questions object
-questions = [{
+var questions = [{
   question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-  choices: ["Javascript", "terminal/bash", "for loops", "console.log"],
+  answers: ["Javascript", "terminal/bash", "for loops", "console.log"],
   correctAnswer: "console.log"
   },
   {
   question: "String values must be enclosed within ____ when being assigned to variables.",
-  choices: ["commas", "curly brackets", "quotes", "parentheses"],
+  answers: ["commas", "curly brackets", "quotes", "parentheses"],
   correctAnswer: "quotes"
   },
   {
   question: "Arrays in JavaScript can be used to store _____.",
-  choices: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+  answers: ["numbers and strings", "other arrays", "booleans", "all of the above"],
   correctAnswer: "all of the above"
   },
   {
   question: "The condition in an if /else statement is enclosed within _____.",
-  choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
+  answers: ["quotes", "curly brackets", "parentheses", "square brackets"],
   correctAnswer: "parentheses"
   },
   {
     question: "Commonly used data types DO NOT include:",
-    choices: ["strings", "booleans", "alerts", "numbers"],
+    answers: ["strings", "booleans", "alerts", "numbers"],
     correctAnswer: "parentheses"
     }
 ];
@@ -75,8 +87,27 @@ questions = [{
 function startQuiz() {
   home.style.display = "none";
   scores.style.display = "none";
-  questions.style.display = "block";
+  questionsBlock.style.display = "block";
   homeButton.style.visibility = "hidden";
+  highscoreButton.style.visibility = "hidden";
+  displayQuestions(i);
+}
+
+function displayQuestions(i) {
+  if (i<5) {
+    questionInput.innerHTML = questions[i].question;
+    answer1.innerHTML = questions[i].answers[0];
+    answer2.innerHTML = questions[i].answers[1];
+    answer3.innerHTML = questions[i].answers[2];
+    answer4.innerHTML = questions[i].answers[3];
+
+
+  }
+  else {
+    clearInterval(myTimer)
+    counterValue = 0;
+    gottoScores();
+  }
 }
 
 // Go to home
@@ -147,5 +178,6 @@ scoreList.addEventListener("click", function(event) {
 init();
 
 // Start/Destination Functions
+startBtn.addEventListener("click", startQuiz);
 homeButton.addEventListener("click",gotoHome);
 highscoreButton.addEventListener("click",gottoScores);

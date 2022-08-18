@@ -14,7 +14,7 @@
     <header class="header">
       <button class="headerItems hh" id="highscore">Highscores</button>
       <button class="headerItems hh" id="homeButton">Home</button>
-      <h2 class="headerItems">Time Left: <span id="time">5</span></h2>
+      <h2 class="headerItems">Time Left: <span id="time">60</span></h2>
     </header>
 
     <br>
@@ -26,7 +26,15 @@
    <section class="section home" id="home">
       <h1 class="title">Coding Quiz</h1>
       <h6>This is the description of the quiz</h6>
-      <button onclick="clock(); document.getElementById('time').innerHTML='60';">Start Quiz</button>
+      <button id="startButton" onclick="clock(); document.getElementById('time').innerHTML='60';">Start Quiz</button>
+    </section>
+
+    <section class="section questions" id="questions">
+      <h1 class="title" id="quizQuestion"></h1>
+      <button class="answers" >1. <span id="answer1"></span></button>
+      <button class="answers" >2. <span id="answer2"></span></button>
+      <button class="answers" >3. <span id="answer3"></span></button>
+      <button class="answers" >4. <span id="answer4"></span></button>
     </section>
 
     <section class="section scores" id="scores">
