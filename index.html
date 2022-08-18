@@ -12,32 +12,33 @@
   <body>
 
     <header class="header">
-      <button class="headerItems hh" id="highscore">Highscore</button>
-      <button class="headerItems hh" id="home">Home</button>
+      <button class="headerItems hh" id="highscore">Highscores</button>
+      <button class="headerItems hh" id="homeButton">Home</button>
       <h2 class="headerItems">Time Left: <span id="time">5</span></h2>
     </header>
 
-    <br>
     <br>
 
     <!-- <div class="timer">
     <button onclick="clearInterval(myTimer);">Stop counter</button>
    </div> -->
 
-   <section class="section home">
+   <section class="section home" id="home">
       <h1 class="title">Coding Quiz</h1>
       <h6>This is the description of the quiz</h6>
-      <button onclick="clock(); document.getElementById('time').innerHTML='5';">Start Quiz</button>
+      <button onclick="clock(); document.getElementById('time').innerHTML='60';">Start Quiz</button>
     </section>
 
-    <section class="section scores">
+    <section class="section scores" id="scores">
       <h1 class="title">Scores</h1>
       <form id="score-form" method="POST">
-        <label for="initial-text">Add a Todo: </label>
-        <input type="text" placeholder="I need to..." name="initial-text" id="initial-text" />
+        <label for="initial-text">Add Your Initials </label>
+        <input type="text" placeholder="Initials" name="initial-text" id="initial-text" />
       </form>
       <p>Todo Count: <span id="top-score">0</span></p>
-      <ul id="score-list"></ul>
+      <div class="scoresContainer">
+        <ul id="score-list"></ul>
+      </div>
     
     </section>
         
