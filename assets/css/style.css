@@ -48,7 +48,7 @@ body {
   border-radius: 8px;
   box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
     rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
-  margin: 60px auto;
+  margin: 60px auto 1% auto;
   padding: 20px;
   width: 80vw;
 }
@@ -73,8 +73,24 @@ body {
   border: groove 2px darkcyan;
   color:white;
   border-radius: 10px;
-  /* padding: 5px; */
-  /* padding-left: 1%; */
+  font-size: 1.5em;
+  padding: 0.5% 1%;
+}
+
+#isItRight {
+  display: none;
+  justify-content: center;
+  font-size: 24px;
+  color:white;
+}
+
+#correctness {
+  width:80vw;
+  border-top:solid 1px darkcyan;
+  padding-top: 0.25%;
+  padding-left: 0.5%;
+  color:white;
+  font-size: 24px;
 }
 
 .scores {
@@ -122,11 +138,10 @@ ul {
 }
 
 li {
-  height: 50px;
+  max-height: 50px;
   margin-top: 5px;
   margin-bottom: 5px;
-  padding: 5px;
-  padding-left: 2%;
+  padding: 5px 1%;
   background-color: var(--grey_shadow);
   color: white;
   font-size: 1.5em;

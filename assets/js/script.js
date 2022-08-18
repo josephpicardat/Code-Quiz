@@ -4,6 +4,7 @@ var scores = document.getElementById("scores");
 var homeButton = document.getElementById("homeButton");
 var highscoreButton =  document.getElementById("highscore");
 var questionsBlock = document.getElementById("questions");
+var isItRight =  document.getElementById("isItRight");
 
 // Timer Global Variables
 var websiteCountdown = document.getElementById("time");
@@ -16,6 +17,7 @@ var answer1 = document.getElementById("answer1");
 var answer2 = document.getElementById("answer2");
 var answer3 = document.getElementById("answer3");
 var answer4 = document.getElementById("answer4");
+var answerBtn = document.getElementsByClassName("answers");
 
 // Scoreboard Global Variables
 var initialInput = document.querySelector("#initial-text");
@@ -91,7 +93,42 @@ function startQuiz() {
   homeButton.style.visibility = "hidden";
   highscoreButton.style.visibility = "hidden";
   displayQuestions(i);
+  answerChoice();
 }
+
+var correct;
+function answerChoice() {
+  
+  // Calculates correct and wrong anwsers
+  for(let j = 0; j < answerBtn.length; j++) {
+    (function(index) {
+      answerBtn[index].addEventListener("click", function() {
+         console.log("Clicked index: " + index);
+
+         console.log("inside");
+         if(questions[i].answers[index] === questions[i].correctAnswer && i < 5) {
+          // correctGuess();
+          correct = "correct";
+          console.log(correct);
+          totalScore++;
+          i++
+          isItRight.style.display = "flex";
+          isItRight.innerHTML = "Correct!"
+
+        } else {
+          // incorrectGuess();
+          correct = "wrong";
+          console.log(correct);
+          totalScore;
+          i++
+          isItRight.style.display = "flex";
+          isItRight.innerHTML = "Wrong!"
+        }
+       })
+    })(j);
+  }
+}
+
 
 function displayQuestions(i) {
   if (i<5) {
@@ -101,7 +138,7 @@ function displayQuestions(i) {
     answer3.innerHTML = questions[i].answers[2];
     answer4.innerHTML = questions[i].answers[3];
 
-
+    console.log(i);
   }
   else {
     clearInterval(myTimer)
