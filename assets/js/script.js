@@ -8,7 +8,7 @@ var isItRight =  document.getElementById("isItRight");
 
 // Timer Global Variables
 var websiteCountdown = document.getElementById("time");
-var counterValue = 60
+var counterValue = 30;
 
 // Question Global Variables
 var startBtn = document.getElementById("startButton");
@@ -24,7 +24,7 @@ var initialInput = document.querySelector("#initial-text");
 var scoreForm = document.querySelector("#score-form");
 var scoreList = document.querySelector("#score-list");
 var topScoreSpan = document.querySelector("#top-score");
-var todos = [];
+var arrayScores = [];
 
 // Important Global Variables
 var totalScore = 0;
@@ -33,30 +33,19 @@ var i = 0;
 
 // Countdown Timer
 var myTimer;
-   function clock() {
-     myTimer = setInterval(myClock, 1000);
+function clock() {
+  myTimer = setInterval(myClock, 1000);
 
-     function myClock() {
-       websiteCountdown.innerHTML = --counterValue;
-       if (counterValue <= 0) {
-         clearInterval(myTimer);
-         websiteCountdown.innerHTML = "Finished";
-         displayQuestions(5);
-       }
-     }
-   }
+  function myClock() {
+    websiteCountdown.innerHTML = --counterValue;
 
-  //  function timer() {
-  //   var timer = setInterval(function(){
-  //       counterValue -= 1;
-  //       $("#timer-value").html(counterValue)
-    
-  //       if (counterValue <= 0) {
-  //           clearInterval(timer)
-  //           displayScore()
-  //       }
-  //   },1000)
-  //   }
+    if (counterValue <= 0) {
+      clearInterval(myTimer);
+      websiteCountdown.innerHTML = "Finished";
+      displayQuestions(5);
+    }
+  }
+}
 
 // questions object
 var questions = [{
@@ -105,8 +94,8 @@ function answerChoice() {
     (function(index) {
       answerBtn[index].addEventListener("click", function() {
         if(questions[i].answers[index] === questions[i].correctAnswer && i <= 4) {
-          correct = "correct";
-          console.log(correct);
+          // correct = "correct";
+          // console.log(correct);
           totalScore++;
           i++
           isItRight.style.display = "flex";
@@ -115,13 +104,16 @@ function answerChoice() {
 
         } else {
           // incorrectGuess();
-          correct = "wrong";
-          console.log(correct);
+          // correct = "wrong";
+          // console.log(correct);
           totalScore;
           i++
           console.log(i);
           isItRight.style.display = "flex";
           isItRight.innerHTML = "Wrong!"
+          // const wrong = new Boolean(false);
+          // clock(wrong);
+          counterValue -= 5;
           displayQuestions(i);
         }
        })
@@ -157,8 +149,6 @@ function gotoHome() {
   homeButton.style.visibility = "visible";
   highscoreButton.style.visibility = "visible";
   isItRight.style.display = "none";
-  i = 0;
-  return i;
 }
 
 // Go to Highscores
@@ -174,14 +164,14 @@ function gottoScores() {
   topScoreSpan.innerHTML = totalScore;
 }
 
-function renderTodos() {
+function renderScore() {
   scoreList.innerHTML = "";
   
-  for (var k = 0; k < todos.length; k++) {
-    var todo = todos[k];
+  for (var k = 0; k < arrayScores.length; k++) {
+    var varScores = arrayScores[k];
 
     var li = document.createElement("li");
-    li.textContent = todo;
+    li.textContent = varScores;
     li.setAttribute("data-index", k);
 
     scoreList.insertBefore(li, scoreList.firstChild);
@@ -189,39 +179,39 @@ function renderTodos() {
 }
 
 function init() {
-  var storedTodos = JSON.parse(localStorage.getItem("todos"));
-  if (storedTodos !== null) {
-    todos = storedTodos;
+  var storedScores = JSON.parse(localStorage.getItem("arrayScores"));
+  if (storedScores !== null) {
+    arrayScores = storedScores;
   }
-  renderTodos();
+  renderScore();
 }
 
-function storeTodos() {
-  localStorage.setItem("todos", JSON.stringify(todos));
+function storeScores() {
+  localStorage.setItem("arrayScores", JSON.stringify(arrayScores));
 }
 
 scoreForm.addEventListener("submit", function(event) {
   event.preventDefault();
   const space = ": ";
   initialInput.value = `${initialInput.value}${space}${totalScore}`;
-  var todoText = initialInput.value.trim();
-  if (todoText === "") {
+  var scoresText = initialInput.value.trim();
+  if (scoresText === "") {
     return;
   }
-  todos.push(todoText);
+  arrayScores.push(scoresText);
   initialInput.value = "";
  
-  storeTodos();
-  renderTodos();
+  storeScores();
+  renderScore();
 });
 
 scoreList.addEventListener("click", function(event) {
   var element = event.target;
   if (element.matches("button") === true) {
     var index = element.parentElement.getAttribute("data-index");
-    todos.splice(index, 1);
-    storeTodos();
-    renderTodos();
+    arrayScores.splice(index, 1);
+    storeScores();
+    renderScore();
   }
 });
 

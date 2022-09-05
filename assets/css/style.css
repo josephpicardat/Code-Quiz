@@ -97,14 +97,19 @@ body {
   display:none;
   height:fit-content;
   height: 80vh;
+  overflow: hidden;
 }
 
 .scoresContainer {
   width:auto;
-  height: 60%;
+  height: 100%;
   overflow: scroll;
   scrollbar-color: white transparent;
 }
+
+/* #score-list{
+  overflow: hidden;
+} */
 
 .home h6, .home button {
   font-size: 24px;
