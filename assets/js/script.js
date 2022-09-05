@@ -41,6 +41,7 @@ var myTimer;
        if (counterValue <= 0) {
          clearInterval(myTimer);
          websiteCountdown.innerHTML = "Finished";
+         displayQuestions(5);
        }
      }
    }
@@ -144,7 +145,7 @@ function displayQuestions(i) {
     questionNumber = 0;
     console.log("Finished");
     console.log("Total Score: ", totalScore);
-    gottoScores(totalScore);
+    gottoScores();
   }
 }
 
@@ -168,11 +169,13 @@ function gottoScores() {
   homeButton.style.visibility = "visible";
   highscoreButton.style.visibility = "visible";
   isItRight.style.display = "none";
+
+  // Displays Final score
+  topScoreSpan.innerHTML = totalScore;
 }
 
 function renderTodos() {
   scoreList.innerHTML = "";
-  topScoreSpan.textContent = todos.length;
   
   for (var k = 0; k < todos.length; k++) {
     var todo = todos[k];
