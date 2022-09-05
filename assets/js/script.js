@@ -81,7 +81,7 @@ var questions = [{
   {
     question: "Commonly used data types DO NOT include:",
     answers: ["strings", "booleans", "alerts", "numbers"],
-    correctAnswer: "parentheses"
+    correctAnswer: "alerts"
     }
 ];
 
@@ -103,17 +103,14 @@ function answerChoice() {
   for(let j = 0; j < answerBtn.length; j++) {
     (function(index) {
       answerBtn[index].addEventListener("click", function() {
-         console.log("Clicked index: " + index);
-
-         console.log("inside");
-         if(questions[i].answers[index] === questions[i].correctAnswer && i < 5) {
-          // correctGuess();
+        if(questions[i].answers[index] === questions[i].correctAnswer && i <= 4) {
           correct = "correct";
           console.log(correct);
           totalScore++;
           i++
           isItRight.style.display = "flex";
           isItRight.innerHTML = "Correct!"
+          displayQuestions(i);
 
         } else {
           // incorrectGuess();
@@ -121,8 +118,10 @@ function answerChoice() {
           console.log(correct);
           totalScore;
           i++
+          console.log(i);
           isItRight.style.display = "flex";
           isItRight.innerHTML = "Wrong!"
+          displayQuestions(i);
         }
        })
     })(j);
@@ -131,7 +130,7 @@ function answerChoice() {
 
 
 function displayQuestions(i) {
-  if (i<5) {
+  if (i<=4) {
     questionInput.innerHTML = questions[i].question;
     answer1.innerHTML = questions[i].answers[0];
     answer2.innerHTML = questions[i].answers[1];
@@ -142,8 +141,10 @@ function displayQuestions(i) {
   }
   else {
     clearInterval(myTimer)
-    counterValue = 0;
-    gottoScores();
+    questionNumber = 0;
+    console.log("Finished");
+    console.log("Total Score: ", totalScore);
+    gottoScores(totalScore);
   }
 }
 
@@ -151,28 +152,34 @@ function displayQuestions(i) {
 function gotoHome() {
   home.style.display = "flex";
   scores.style.display = "none";
-  // questions.style.display = "none";
-  homeButton.style.visibility = "visibile";
+  questionsBlock.style.display = "none";
+  homeButton.style.visibility = "visible";
+  highscoreButton.style.visibility = "visible";
+  isItRight.style.display = "none";
+  i = 0;
+  return i;
 }
 
 // Go to Highscores
 function gottoScores() {
   home.style.display = "none";
   scores.style.display = "block";
-  // questions.style.display = "none";
-  homeButton.style.visibility = "visibile";
+  questionsBlock.style.display = "none";
+  homeButton.style.visibility = "visible";
+  highscoreButton.style.visibility = "visible";
+  isItRight.style.display = "none";
 }
 
 function renderTodos() {
   scoreList.innerHTML = "";
   topScoreSpan.textContent = todos.length;
   
-  for (var i = 0; i < todos.length; i++) {
-    var todo = todos[i];
+  for (var k = 0; k < todos.length; k++) {
+    var todo = todos[k];
 
     var li = document.createElement("li");
     li.textContent = todo;
-    li.setAttribute("data-index", i);
+    li.setAttribute("data-index", k);
 
     scoreList.insertBefore(li, scoreList.firstChild);
   }
@@ -189,8 +196,11 @@ function init() {
 function storeTodos() {
   localStorage.setItem("todos", JSON.stringify(todos));
 }
+
 scoreForm.addEventListener("submit", function(event) {
   event.preventDefault();
+  const space = ": ";
+  initialInput.value = `${initialInput.value}${space}${totalScore}`;
   var todoText = initialInput.value.trim();
   if (todoText === "") {
     return;
@@ -216,5 +226,10 @@ init();
 
 // Start/Destination Functions
 startBtn.addEventListener("click", startQuiz);
-homeButton.addEventListener("click",gotoHome);
+
+homeButton.addEventListener("click", gotoHome);
+homeButton.addEventListener("click", function(e) {
+  location.reload();  
+}, false);
+
 highscoreButton.addEventListener("click",gottoScores);
