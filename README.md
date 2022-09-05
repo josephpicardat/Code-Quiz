@@ -42,7 +42,7 @@
 
   ## Tests
 
-  undefined
+  No tests are applicable for this project.
 
   ## Questions
 
