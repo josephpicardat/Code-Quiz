@@ -31,7 +31,7 @@
 
   ## Usage
 
-  Link: 
+  Link: https://josephpicardat.github.io/Code-Quiz/
 
   ![Starting Page](./assets/images/start-screen.png)
   ![Questions Image](./assets/images/questions.png)
