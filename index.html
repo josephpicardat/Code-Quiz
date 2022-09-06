@@ -11,6 +11,7 @@
 
   <body>
 
+    <!-- header -->
     <header class="header">
       <button class="headerItems hh" id="highscore">Highscores</button>
       <button class="headerItems hh" id="homeButton">Home</button>
@@ -19,12 +20,14 @@
 
     <br>
 
-   <section class="section home" id="home">
-      <h1 class="title">Coding Quiz</h1>
-      <h6>This is the description of the quiz</h6>
-      <button id="startButton" onclick="clock(); document.getElementById('time').innerHTML='30';">Start Quiz</button>
-    </section>
+    <!-- Home Section -->
+    <section class="section home" id="home">
+        <h1 class="title">Coding Quiz</h1>
+        <h6>This is the description of the quiz</h6>
+        <button id="startButton" onclick="clock(); document.getElementById('time').innerHTML='30';">Start Quiz</button>
+      </section>
 
+    <!-- Questions Section -->
     <section class="section questions" id="questions">
       <h1 class="title" id="quizQuestion"></h1>
       <button class="answers" >1. <span id="answer1"></span></button>
@@ -33,13 +36,17 @@
       <button class="answers" >4. <span id="answer4"></span></button>
     </section>
 
+    <!-- Div that displays if the anwser is correct or incorrect -->
     <div id="isItRight">
       <h3 id="correctness">correct!</h3>
     </div>
 
+    <!-- Scores Section -->
     <section class="section scores" id="scores">
       <h1 class="title">Scores</h1>
       <p>Your Score: <span id="top-score">0</span></p>
+
+      <!-- User Input for initial and auto generated score -->
       <form id="score-form" method="POST">
         <label for="initial-text">Add Only Your Initials (will auto enter score) </label>
         <input type="text" placeholder="Initials" name="initial-text" id="initial-text" />

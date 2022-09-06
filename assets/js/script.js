@@ -36,6 +36,7 @@ var myTimer;
 function clock() {
   myTimer = setInterval(myClock, 1000);
 
+  // Local function that displays the time and marks whether time is up or not
   function myClock() {
     websiteCountdown.innerHTML = --counterValue;
 
@@ -93,9 +94,8 @@ function answerChoice() {
   for(let j = 0; j < answerBtn.length; j++) {
     (function(index) {
       answerBtn[index].addEventListener("click", function() {
+        // Decideds if the anwser clicked is equal to the correct anwser
         if(questions[i].answers[index] === questions[i].correctAnswer && i <= 4) {
-          // correct = "correct";
-          // console.log(correct);
           totalScore++;
           i++
           isItRight.style.display = "flex";
@@ -103,16 +103,11 @@ function answerChoice() {
           displayQuestions(i);
 
         } else {
-          // incorrectGuess();
-          // correct = "wrong";
-          // console.log(correct);
           totalScore;
           i++
           console.log(i);
           isItRight.style.display = "flex";
           isItRight.innerHTML = "Wrong!"
-          // const wrong = new Boolean(false);
-          // clock(wrong);
           counterValue -= 5;
           displayQuestions(i);
         }
@@ -121,7 +116,7 @@ function answerChoice() {
   }
 }
 
-
+// Display question funtion
 function displayQuestions(i) {
   if (i<=4) {
     questionInput.innerHTML = questions[i].question;
@@ -164,6 +159,7 @@ function gottoScores() {
   topScoreSpan.innerHTML = totalScore;
 }
 
+// Renders scores from local storage
 function renderScore() {
   scoreList.innerHTML = "";
   
@@ -178,6 +174,7 @@ function renderScore() {
   }
 }
 
+// Retrieves scores and gets json value to be used
 function init() {
   var storedScores = JSON.parse(localStorage.getItem("arrayScores"));
   if (storedScores !== null) {
@@ -186,10 +183,12 @@ function init() {
   renderScore();
 }
 
+// stores scores in local storage
 function storeScores() {
   localStorage.setItem("arrayScores", JSON.stringify(arrayScores));
 }
 
+// when you hit "enter" for your initial's it outputs your initial plus your score for the quiz.
 scoreForm.addEventListener("submit", function(event) {
   event.preventDefault();
   const space = ": ";
@@ -201,28 +200,23 @@ scoreForm.addEventListener("submit", function(event) {
   arrayScores.push(scoresText);
   initialInput.value = "";
  
+  // Sends score + initial to be stored to local storage
   storeScores();
+  // Sends score + initial to be rendered
   renderScore();
 });
 
-scoreList.addEventListener("click", function(event) {
-  var element = event.target;
-  if (element.matches("button") === true) {
-    var index = element.parentElement.getAttribute("data-index");
-    arrayScores.splice(index, 1);
-    storeScores();
-    renderScore();
-  }
-});
-
+// Calls init() to get values from local storage
 init();
 
 // Start/Destination Functions
-startBtn.addEventListener("click", startQuiz);
+  startBtn.addEventListener("click", startQuiz);
 
-homeButton.addEventListener("click", gotoHome);
-homeButton.addEventListener("click", function(e) {
-  location.reload();  
-}, false);
+  // Sends to homescreen, but also resets the values to start the quiz
+  homeButton.addEventListener("click", gotoHome);
+  homeButton.addEventListener("click", function(e) {
+    location.reload();  
+  }, false);
 
-highscoreButton.addEventListener("click",gottoScores);
+  // Goes to scores screen
+  highscoreButton.addEventListener("click",gottoScores);

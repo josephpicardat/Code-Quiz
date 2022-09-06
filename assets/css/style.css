@@ -1,7 +1,9 @@
+/* Sets font family */
 *{
   font-family: sans-serif, serif, monospace;
 }
 
+/* Sets root variables */
 :root {
   --background: #1f252f;
   --lighter_background: #262d3a;
@@ -9,12 +11,14 @@
   --blue: #05fdf8;
 }
 
+/* Body Format */
 body {
   font-family: "Roboto", sans-serif;
   background-color: var(--background);
   color: white;
 }
 
+/* Sets header properties */
 .header {
   display:inline-flex;
   width:95vw;
@@ -29,6 +33,7 @@ body {
   border-bottom: solid 2px darkcyan;
 }
 
+/* Sets headerItems properties */
 .headerItems {
   border: none;
   background-color: transparent;
@@ -38,10 +43,12 @@ body {
   border-bottom: solid 1px;
 }
 
+/* Sets hover over header buttons to be blue */
 .hh:hover {
   color: var(--blue);
 }
 
+/* Sets section properties */
 .section {
   background-color:	var(--lighter_background);
   border: 1px solid #eceff1;
@@ -60,6 +67,7 @@ body {
   align-items: center;
 }
 
+/* Goes over css for the question section lines 71-102 */
 .questions {
   display:none;
 }
@@ -93,6 +101,7 @@ body {
   font-size: 24px;
 }
 
+/* Goes over the scores section from lines 105-117 */
 .scores {
   display:none;
   height:fit-content;
@@ -107,18 +116,17 @@ body {
   scrollbar-color: white transparent;
 }
 
-/* #score-list{
-  overflow: hidden;
-} */
-
+/* Properties for home button */
 .home h6, .home button {
   font-size: 24px;
 }
 
+/* Title properties */
 .title {
   font-size: 36px;
 }
 
+/* Sets properties for score lists lines 130-185 */
 label, p {
   font-size: 24px;
 }
